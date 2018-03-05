@@ -148,7 +148,7 @@ var Hogan = {};
       } else {
         for (var i = 1; i < names.length; i++) {
           found = findInScope(names[i], val, doModelGet);
-          if (found != null) {
+          if (found !== undefined) {
             cx = val;
             val = found;
           } else {
@@ -180,7 +180,7 @@ var Hogan = {};
       for (var i = ctx.length - 1; i >= 0; i--) {
         v = ctx[i];
         val = findInScope(key, v, doModelGet);
-        if (val != null) {
+        if (val !== undefined) {
           found = true;
           break;
         }
@@ -264,11 +264,11 @@ var Hogan = {};
 
   //Find a key in an object
   function findInScope(key, scope, doModelGet) {
-    var val, checkVal;
+    var val;
 
     if (scope && typeof scope == 'object') {
 
-      if (scope[key] != null) {
+      if (scope[key] !== undefined) {
         val = scope[key];
 
       // try lookup with get for backbone or similar model data
@@ -351,7 +351,9 @@ var Hogan = {};
       rQuot = /\"/g,
       rNewline =  /\n/g,
       rCr = /\r/g,
-      rSlash = /\\/g;
+      rSlash = /\\/g,
+      rLineSep = /\u2028/,
+      rParagraphSep = /\u2029/;
 
   Hogan.tags = {
     '#': 1, '^': 2, '<': 3, '$': 4,
@@ -638,7 +640,9 @@ var Hogan = {};
     return s.replace(rSlash, '\\\\')
             .replace(rQuot, '\\\"')
             .replace(rNewline, '\\n')
-            .replace(rCr, '\\r');
+            .replace(rCr, '\\r')
+            .replace(rLineSep, '\\u2028')
+            .replace(rParagraphSep, '\\u2029');
   }
 
   function chooseMethod(s) {
@@ -749,3 +753,7 @@ var Hogan = {};
   }
 })(typeof exports !== 'undefined' ? exports : Hogan);
 
+
+if (typeof define === 'function' && define.amd) {
+  define(Hogan);
+}

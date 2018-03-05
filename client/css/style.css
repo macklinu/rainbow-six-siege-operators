@@ -1,0 +1,16 @@
+#badges {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#badges img {
+  width: 48px;
+  height: 48px;
+}
+
+#badges img:hover {
+  background-color: lightgray;
+}

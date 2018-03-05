@@ -3,7 +3,8 @@
     "browser": true
   },
   "globals": {
-    "require": true
+    "require": true,
+    "define": true
   },
   "plugins": ["es5"],
   "extends": ["eslint:recommended", "plugin:es5/no-es2015"],

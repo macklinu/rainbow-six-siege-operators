@@ -1,15 +1,16 @@
-const { send } = require('micro')
+'use strict'
 
-const operators = {
-  mute: {
-    id: 'mute',
-    name: 'Mute',
-    group: 'SAS',
-    badgeUrl:
-      'https://d1u5p3l4wpay3k.cloudfront.net/rainbowsixsiege_gamepedia/1/11/Mute_Badge.png?version=5731d7b08626fc67d5aa2be61a95e4f8',
-  },
+const { parse } = require('url')
+const { send, createError } = require('micro')
+const cors = require('micro-cors')()
+const operators = require('./operators')
+
+const handler = (req, res) => {
+  const { pathname } = parse(req.url)
+  if (pathname === '/operators') {
+    return send(res, 200, Object.values(operators))
+  }
+  throw createError(404, 'Not Found')
 }
 
-module.exports = (req, res) => {
-  send(res, 200, Object.values(operators))
-}
+module.exports = cors(handler)

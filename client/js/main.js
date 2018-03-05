@@ -6,7 +6,7 @@ require.config({
     views: '../views',
     templates: '../templates',
     models: '../models',
-    mustache: 'mustache',
+    collections: '../collections',
   },
   shims: {
     backbone: {
@@ -18,14 +18,12 @@ require.config({
     underscore: {
       exports: '_',
     },
-    mustache: {
-      exports: 'Mustache',
-    },
   },
 })
 
-require(['jquery'], function($) {
+require(['jquery', 'views/AppView'], function($, AppView) {
   $(function() {
-    console.log('ready!')
+    var appView = new AppView()
+    appView.render()
   })
 })
