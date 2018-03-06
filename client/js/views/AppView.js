@@ -27,11 +27,22 @@ define([
     events: {
       'click li': 'onItemClick',
     },
+    initialize: function() {
+      this.state = new Backbone.Model({
+        selected: null,
+      })
+      this.state.on('change', this.render, this)
+    },
     render: function() {
       this.$el.html(
         this.template.render({
           collection: this.collection.map(function(model) {
-            return model.pick(['id', 'name', 'badgeUrl'])
+            return _.assign(model.pick(['id', 'name', 'badgeUrl']), {
+              classes:
+                this.state.get('selected') === model.get('id')
+                  ? 'badge-selected'
+                  : '',
+            })
           }, this),
         })
       )
@@ -41,6 +52,7 @@ define([
       var id = this.$(event.currentTarget).data('id')
       var model = this.collection.get(id)
       this.trigger('badge:click', model)
+      this.state.set('selected', id)
     },
   })
 

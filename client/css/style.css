@@ -14,3 +14,7 @@
 #badges img:hover {
   background-color: lightgray;
 }
+
+.badge-selected {
+  background: palevioletred;
+}
