@@ -1,12 +1,12 @@
 'use strict'
 
+// Set up require.js.
 require.config({
   baseUrl: 'js/libs',
+  // Paths are relative to the baseUrl property.
   paths: {
     views: '../views',
     templates: '../templates',
-    models: '../models',
-    collections: '../collections',
   },
   shims: {
     backbone: {
@@ -21,7 +21,9 @@ require.config({
   },
 })
 
+// The application entry point.
 require(['jquery', 'views/AppView'], function($, AppView) {
+  // When the DOM has finished loading, create and render the app view.
   $(function() {
     var appView = new AppView()
     appView.render()
