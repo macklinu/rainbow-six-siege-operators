@@ -29,7 +29,9 @@ preferred Node.js version for development is the latest version of Node 8.x.
 
 Install client and server dependencies with `yarn install`.
 
-Run the development server (client and server) with `yarn start`.
+Run the development server (client and server) with `yarn start`. Visit
+[http://localhost:5000/](http://localhost:5000/) once the servers are started to
+view the web app in the browser (only tested on Chrome, for now).
 
 ## Documentation
 
