@@ -188,7 +188,7 @@ module.exports = {
   valkyrie: {
     id: 'valkyrie',
     name: 'Valkyrie',
-    group: 'Navy SEALS',
+    group: 'Navy SEALs',
     type: 'defender',
     badgeUrl:
       'https://vignette.wikia.nocookie.net/rainbowsix/images/e/ef/Valkyrie_badge.png/revision/latest?cb=20160509214702',
